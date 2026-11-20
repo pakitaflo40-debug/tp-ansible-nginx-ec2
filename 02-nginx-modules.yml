@@ -1,0 +1,21 @@
+---
+- name: Installer Nginx avec les modules Ansible
+  hosts: web
+  become: true
+  tasks:
+    - name: Installer nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Démarrer et activer nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Déployer une page d'accueil
+      ansible.builtin.copy:
+        content: "<h1>Nginx déployé avec Ansible</h1>\n"
+        dest: /var/www/html/index.html

@@ -1,0 +1,24 @@
+---
+- name: Installer Nginx avec des commandes shell
+  hosts: web
+  become: true
+  tasks:
+    - name: Mettre à jour le cache apt
+      ansible.builtin.shell: apt-get update
+
+    - name: Installer nginx
+      ansible.builtin.shell: apt-get install -y nginx
+
+    - name: Démarrer nginx
+      ansible.builtin.shell: systemctl start nginx
+
+    - name: Activer nginx au démarrage
+      ansible.builtin.shell: systemctl enable nginx
+
+    - name: Vérifier l'état de nginx
+      ansible.builtin.shell: systemctl is-active nginx
+      register: nginx_status
+
+    - name: Afficher l'état
+      ansible.builtin.debug:
+        var: nginx_status.stdout

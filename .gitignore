@@ -1,0 +1,24 @@
+# Clés privées - JAMAIS sur GitHub
+*.pem
+*.key
+*.ppk
+*.p12
+
+# Inventaire réel avec IP / user
+inventory.ini
+inventory.yml
+inventory.yaml
+hosts
+hosts.ini
+
+# Secrets Ansible
+.vault_pass
+vault_pass.txt
+*.vault.yml
+.env
+
+# Fichiers générés
+*.retry
+*.log
+__pycache__/
+.ansible/
